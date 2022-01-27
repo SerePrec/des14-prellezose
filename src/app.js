@@ -11,6 +11,7 @@ import authRouter from "./routes/authRouter.js";
 import webServerRouter from "./routes/webServerRouter.js";
 import apiTestsRouter from "./routes/apiTestsRouter.js";
 import apiProductosRouter from "./routes/apiProductosRouter.js";
+import apiRandomsRouter from "./routes/apiRandomsRouter.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const mongoUrl =
@@ -50,6 +51,7 @@ app.use(passport.session());
 app.use(authRouter);
 app.use(webServerRouter);
 app.use("/api", apiTestsRouter);
+app.use("/api/randoms", apiRandomsRouter);
 app.use("/api/productos", apiProductosRouter);
 
 // error 404 API

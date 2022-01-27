@@ -29,7 +29,7 @@ export const showAppInfo = (req, res) => {
     SO: process.platform,
     nodeVersion: process.version,
     execPath: process.execPath,
-    proyectPath: process.argv[1].slice(0, -4),
+    proyectPath: process.cwd(),
     args:
       process.argv.length > 2 ? process.argv.slice(2).join(", ") : "ninguno",
     pid: process.pid,
