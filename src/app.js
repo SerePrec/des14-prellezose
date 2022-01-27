@@ -5,8 +5,9 @@ import MongoStore from "connect-mongo";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 
-import { passport } from "./middelwares/passport.js";
+import { passport } from "./middlewares/passport.js";
 import config from "./config.js";
+import authRouter from "./routes/authRouter.js";
 import webServerRouter from "./routes/webServerRouter.js";
 import productosMockRouter from "./routes/productosMockRouter.js";
 import productosRouter from "./routes/productosRouter.js";
@@ -31,7 +32,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(
   session({
     store: MongoStore.create({ mongoUrl, mongoOptions }),
-    secret: "mi_super_secreto",
+    secret: config.session.secret,
     resave: false,
     saveUninitialized: false,
     rolling: true,
@@ -44,6 +45,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(authRouter);
 app.use(webServerRouter);
 app.use("/api", productosMockRouter);
 app.use("/api/productos", productosRouter);

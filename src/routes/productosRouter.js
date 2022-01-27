@@ -4,7 +4,7 @@ import {
   validateId,
   validatePostBody,
   validatePutBody
-} from "../middelwares/validateApiData.js";
+} from "../middlewares/validateApiData.js";
 
 const router = Router();
 
