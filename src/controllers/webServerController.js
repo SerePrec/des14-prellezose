@@ -22,3 +22,17 @@ export const getProductosMock = (req, res) => {
     root: path.join(__dirname, "..", "views")
   });
 };
+
+export const showAppInfo = (req, res) => {
+  res.render("./pages/appInfo", {
+    title: "App Info",
+    SO: process.platform,
+    nodeVersion: process.version,
+    execPath: process.execPath,
+    proyectPath: process.argv[1].slice(0, -4),
+    args:
+      process.argv.length > 2 ? process.argv.slice(2).join(", ") : "ninguno",
+    pid: process.pid,
+    rss: `${Math.round(process.memoryUsage().rss / 1024)} KB`
+  });
+};

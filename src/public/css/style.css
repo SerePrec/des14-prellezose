@@ -287,6 +287,26 @@ div.bg-yellow {
   width: fit-content;
 }
 
+.appInfo .title {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.appInfo h1 {
+  font-size: 3rem;
+  margin-bottom: 0;
+  margin-right: 1rem;
+}
+.appInfo .title svg {
+  width: 2rem;
+  color: #0072ff;
+}
+
+.appInfo .table {
+  text-align: left;
+}
+
 /* para pisar Bootstrap */
 /* ******************** */
 .btn-danger {
