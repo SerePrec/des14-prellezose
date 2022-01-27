@@ -1,14 +1,6 @@
-import { Router } from "express";
 import { productsModel } from "../models/index.js";
-import {
-  validateId,
-  validatePostBody,
-  validatePutBody
-} from "../middlewares/validateApiData.js";
 
-const router = Router();
-
-router.get("/", async (req, res) => {
+export const getAllProducts = async (req, res) => {
   try {
     const lista = await productsModel.getAll();
     res.json(lista);
@@ -18,9 +10,9 @@ router.get("/", async (req, res) => {
       error: "No se pudo recuperar la infomación"
     });
   }
-});
+};
 
-router.post("/", validatePostBody, async (req, res) => {
+export const createProduct = async (req, res) => {
   try {
     let { title, price, thumbnail } = req.body;
     let newProduct = { title, price, thumbnail };
@@ -32,9 +24,9 @@ router.post("/", validatePostBody, async (req, res) => {
       error: "No se pudo agregar el producto"
     });
   }
-});
+};
 
-router.get("/:id", validateId, async (req, res) => {
+export const getProduct = async (req, res) => {
   try {
     const producto = await productsModel.getById(req.params.id);
     producto !== null
@@ -46,9 +38,9 @@ router.get("/:id", validateId, async (req, res) => {
       error: "No se pudo recuperar la infomación"
     });
   }
-});
+};
 
-router.put("/:id", validateId, validatePutBody, async (req, res) => {
+export const updateProduct = async (req, res) => {
   try {
     const { title, price, thumbnail } = req.body;
     const { id } = req.params;
@@ -63,9 +55,9 @@ router.put("/:id", validateId, validatePutBody, async (req, res) => {
       error: "No se pudo actualizar el producto"
     });
   }
-});
+};
 
-router.delete("/:id", validateId, async (req, res) => {
+export const deleteProduct = async (req, res) => {
   try {
     const deletedId = await productsModel.deleteById(req.params.id);
     deletedId !== null
@@ -77,6 +69,4 @@ router.delete("/:id", validateId, async (req, res) => {
       error: "No se pudo eliminar el producto"
     });
   }
-});
-
-export default router;
+};

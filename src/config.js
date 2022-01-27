@@ -7,8 +7,6 @@ const argv = parseArgs(process.argv.slice(2), {
   default: { p: 8080 }
 });
 
-console.log(argv);
-
 if (process.env.NODE_ENV !== "production") {
   const { config } = await import("dotenv");
   config();

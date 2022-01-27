@@ -9,8 +9,8 @@ import { passport } from "./middlewares/passport.js";
 import config from "./config.js";
 import authRouter from "./routes/authRouter.js";
 import webServerRouter from "./routes/webServerRouter.js";
-import productosMockRouter from "./routes/productosMockRouter.js";
-import productosRouter from "./routes/productosRouter.js";
+import apiTestsRouter from "./routes/apiTestsRouter.js";
+import apiProductosRouter from "./routes/apiProductosRouter.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const mongoUrl =
@@ -29,6 +29,8 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
+
+// ELECCIÓN DE SESSION STORE: MONGOSTORE ****************
 app.use(
   session({
     store: MongoStore.create({ mongoUrl, mongoOptions }),
@@ -47,8 +49,8 @@ app.use(passport.session());
 
 app.use(authRouter);
 app.use(webServerRouter);
-app.use("/api", productosMockRouter);
-app.use("/api/productos", productosRouter);
+app.use("/api", apiTestsRouter);
+app.use("/api/productos", apiProductosRouter);
 
 // error 404 API
 app.use("/api", (req, res, next) => {

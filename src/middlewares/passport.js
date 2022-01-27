@@ -66,4 +66,19 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-export { passport };
+const passportAuthLogin = passport.authenticate("login", {
+  failureRedirect: "/login-error",
+  // connect-flash presenta más problemas de carrera al guardar sesiones en MongoDB y no en la memoria. Por eso los paso por la sesión de manera normal
+  failureMessage: true,
+  successRedirect: "/"
+});
+
+const passportAuthRegister = passport.authenticate("register", {
+  failureRedirect: "/register-error",
+  // connect-flash presenta más problemas de carrera al guardar sesiones en MongoDB y no en la memoria. Por eso los paso por la sesión de manera normal
+  failureMessage: true,
+  successRedirect: "/",
+  successMessage: "¡Gracias por registrarte en nuestro sitio!"
+});
+
+export { passport, passportAuthLogin, passportAuthRegister };

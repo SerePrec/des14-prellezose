@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 import ContenedorMongoDB from "./ContenedorMongoDB.js";
 import { deepClone, renameField } from "../utils/dataTools.js";
 
+// ELECCIÓN DE PERSISTENCIA: MONGODB ****************
+// **************************************************
 const { Schema } = mongoose;
 
 const messageSchema = new Schema({
